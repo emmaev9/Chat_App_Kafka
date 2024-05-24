@@ -22,6 +22,7 @@
       </div>
       <div v-else>
         <h2>Select a user to start chatting</h2>
+        <button @click="sendMessageWebsocket">Send message</button>
       </div>
     </div>
     <div class="sidebar">
@@ -40,6 +41,7 @@
 
 <script>
 import axios from 'axios';
+import { connect, sendMessageWS } from '../service/websocketservice';
 
 export default {
   name: 'ChatPage',
@@ -91,17 +93,15 @@ export default {
 
       this.newMessage = '';
       this.fetchMessages();
+    },
+    sendMessageWebsocket() {
+      sendMessageWS("private-aurel-aurel-Penis")
     }
   },
   mounted() {
-    const socket = new WebSocket('ws://localhost:8080');
-    
-    socket.onmessage = (event) => {
-      const message = JSON.parse(event.data);
-      if (message.recipient === this.selectedUser.username || message.sender === this.selectedUser.username) {
-        this.messages.push(message);
-      }
-    };
+    connect('aurel', (message) => {
+      console.log("received: " + message)
+    });
   }
 }
 </script>
