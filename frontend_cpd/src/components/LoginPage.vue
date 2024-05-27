@@ -9,7 +9,7 @@
   </template>
 
   <script>
-  export default {
+  export default {  
     name: 'LoginPage',
     data() {
       return {
@@ -18,10 +18,11 @@
     },
     methods: {
       login() {
+        
         if (this.username.trim()) {
           console.log('Username:', this.username);
-          // Redirect to the chat page with the username as a route parameter
-          this.$router.push({ name: 'ChatPage', params: { username: this.username } });
+          localStorage.setItem('username', this.username);
+          this.$router.push({ name: 'ChatPage', params: { user: this.username } });
         } else {
           alert('Please enter a username');
         }

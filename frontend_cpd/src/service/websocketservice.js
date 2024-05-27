@@ -22,6 +22,10 @@ export function sendMessageWS(message) {
     stompClient.send("/app/sendPrivateMessage", {}, JSON.stringify(message));
 }
 
+export function sendMessageWSGroup(message) {
+    stompClient.send("/app/sendGroupMessage", {}, JSON.stringify(message));
+}
+
 export function addUser(user) {
     stompClient.send("/app/chat.addUser", {}, JSON.stringify(user));
 }

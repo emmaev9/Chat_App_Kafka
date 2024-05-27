@@ -9,7 +9,7 @@ const routes = [
     component: LoginPage
   },
   {
-    path: '/chatPage/:username',
+    path: '/chatPage/:user',
     name: 'ChatPage',
     component: ChatPage,
     props: true

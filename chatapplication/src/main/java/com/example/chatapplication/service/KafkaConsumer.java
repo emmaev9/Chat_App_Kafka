@@ -24,8 +24,10 @@ public class KafkaConsumer {
     @KafkaListener(topics = "private", groupId = "chat-group")
     public void listenPrivate(String message) {
         System.out.println("Consumer private received " + message);
-        UUID sessionID = sessionStorage.getSessionID(message.split("-")[1]);
-
+        UUID sessionID = sessionStorage.getSessionID(message.split("-")[2]);
+        if (sessionID != null) {
+            simpMessagingTemplate.convertAndSendToUser(sessionID.toString(), "/topic/chat", message);
+        }
 
     }
 

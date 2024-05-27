@@ -2,16 +2,17 @@ package com.example.chatapplication.service;
 
 import com.example.chatapplication.kafka.KafkaConfiguration;
 import com.example.chatapplication.model.Group;
-import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 
 @Service
+@AllArgsConstructor
 public class GroupService {
 
-    HashMap<String, Group> groups;
+    private final HashMap<String, Group> groups;
 
     @Autowired
     private KafkaConfiguration kafkaConfig;

@@ -26,9 +26,6 @@ public class SessionStorage {
 
         UUID sessionID = usernameSessionPairList.get(username);
 
-        if(sessionID == null) {
-            return null;
-        }
         return sessionID;
     }
 
